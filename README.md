@@ -17,8 +17,9 @@ Completed during Fall 2021 semester at BHCC
 
 ### Implementation Notes
 
-- app uses the `@login_required` decorator from Django
+- App uses the `@login_required` decorator from Django as well as out-of-the-box admin features
 - I used a very simple implementation of Bootstrap in conjuntion with HTML templates for the site design.
+- 
 - This code allows for the selection of multiple users at once in the Share view:
 ```
 window.onload = function(){
