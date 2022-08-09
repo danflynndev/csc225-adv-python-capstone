@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}My Notes{% endblock %}
+
+{% block main %}
+    <div class="w-100 mx-0 row justify-content-evenly">
+        <div class="container col-lg-5 col-md-5 col-sm-12">
+        <h2>My Notes</h2>
+        {% if notes %}
+            {% for note in notes %}
+                <div class="card mb-3 shadow">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ note.title }}</h4>
+                        <p class="card-text">{{ note.message }}</p>
+                        <p class="card-subtitle text-muted mb-3">Shared with:
+                            {% for k, v in users_shared_with.items %}
+                                {% if k.id == note.id %}
+                                    {% for n in v %}
+                                        <span class="p-1 border rounded-pill bg-light">{{ n.user }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                        <button class="btn btn-primary" onclick="document.location = '{% url 'NoteShare:edit_note' note.id %}'">Edit</button>
+                        <button class="btn btn-primary" onclick="document.location = '{% url 'NoteShare:share_note' note.id %}'">Share</button>
+                        <button class="btn btn-secondary" onclick="document.location = '{% url 'NoteShare:delete_note' note.id %}'">Delete</button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>You have no notes</h4>
+        {% endif %}
+    </div>
+    <div class="container col-lg-5 col-md-5 col-sm-12">
+        <h2>Notes shared with me</h2>
+        {% if shared %}
+            {% for note in shared %}
+                <div class="card mb-3 shadow">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ note.title }}</h4>
+                        <p class="card-text">{{ note.message }}</p>
+                        <p class="card-subtitle text-muted">Shared by: {{ note.creator }}</p>
+                        <button class="btn btn-secondary" onclick="document.location = '{% url 'NoteShare:hide_note' note.id %}'">Hide</button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>No notes have been shared with you</h4>
+        {% endif %}
+    </div>
+    </div>
+
+{% endblock %}

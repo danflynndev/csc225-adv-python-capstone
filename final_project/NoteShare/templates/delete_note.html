@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Note | NoteShare{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h2>Are you sure you want to delete this note?</h2>
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="card-title">{{ title }}</h4>
+                <p class="card-text">{{ message }}</p>
+                <p class="card-subtitle text-muted mb-3">Shared with:
+                    {% for u in users_shared_with %}
+                        <span class="p-1 border rounded-pill bg-light">{{ u.user }}</span>
+                    {% endfor %}
+                </p>
+                <form method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Delete</button>
+            <button class="btn btn-secondary" type="button" onclick="document.location = '{% url 'NoteShare:dashboard' %}'">Cancel</button>
+        </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

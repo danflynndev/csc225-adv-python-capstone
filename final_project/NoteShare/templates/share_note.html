@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Share Note | NoteShare{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <form class="border-1 rounded shadow p-3" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Share</button>
+            <button class="btn btn-secondary" onclick="document.location = '{% url 'NoteShare:dashboard' %}'">Cancel</button>
+        </form>
+    </div>
+<script>
+        window.onload = function(){
+        const options = document.querySelectorAll('option');
+        options.forEach(opt => {
+            opt.addEventListener('mousedown', e => {
+                e.preventDefault();
+                console.log(opt.selected);
+                if (opt.selected == true) {
+                    return opt.selected = false;
+                } else if (opt.selected == false) {
+                    return opt.selected = true;
+                }
+            })
+        })
+    }
+    </script>
+
+{% endblock %}

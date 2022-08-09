@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Note | NoteShare{% endblock %}
+
+{% block main %}
+    <div class="container">
+       <form class="border-1 rounded shadow p-3" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Confirm Changes</button>
+            <button class="btn btn-secondary" onclick="document.location = '{% url 'NoteShare:dashboard' %}'">Cancel</button>
+        </form>
+    </div>
+
+{% endblock %}
