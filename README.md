@@ -3,8 +3,6 @@
 
 Completed during Fall 2021 semester at BHCC
 
----
-
 ### Project Requirements
 
 - Built with Django framework
