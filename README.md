@@ -42,3 +42,4 @@ window.onload = function(){
 ![create view](./images/create.png)
 ![share view](./images/share.png)
 ![delete view](./images/delete.png)
+![admin view](./images/admin.png)
